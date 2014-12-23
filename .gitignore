@@ -2,6 +2,7 @@
 *.asv
 *.MTS
 *.wav
+*.mat
 distractPics.m
 mexopencv-master
 mexopencv-2.4.5
