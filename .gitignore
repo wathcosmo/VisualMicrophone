@@ -1,7 +1,10 @@
 *.pdf
 *.asv
+*.MTS
+*.wav
 distractPics.m
 mexopencv-master
+mexopencv-2.4.5
 mmread
 pics
 textureSynth
