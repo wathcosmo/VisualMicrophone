@@ -1,10 +1,10 @@
-function vibwav = OFA(frms, impath)
+function vibwav = OFA(videoID, frms)
     addpath('./mexopencv-master');
     
     numPt = 40;
     n = length(frms);
-    imref = imread(strcat(impath, '/im', num2str(frms(1)), '.jpg'));
-    imref = recoverBG(imref); % recover black background from noise
+    [imref, bg] = denoised(videoID, frms(1));
+%     imref = recoverBG(imref); % recover black background from noise
     ptsref = cv.goodFeaturesToTrack(imref, 'MaxCorners', numPt);
     
 %     % check the selected points
@@ -18,15 +18,15 @@ function vibwav = OFA(frms, impath)
 %     imshow(a);
     xs(1) = ptsref{1}(1);
     ys(1) = ptsref{1}(2);
-
+    
     X = zeros(n, 2*numPt);
     for i = 1 : numPt
         X(1, [i*2-1, i*2]) = ptsref{i};
     end
     
     for k = 2 : n
-        img = imread(strcat(impath, '/im', num2str(frms(k)), '.jpg'));
-        img = recoverBG(img);
+        img = denoised(videoID, frms(k), bg);
+%         img = recoverBG(img);
         ptscur = cv.calcOpticalFlowPyrLK(imref, img, ptsref);
         xs(k) = ptscur{1}(1);
         ys(k) = ptscur{1}(2);
