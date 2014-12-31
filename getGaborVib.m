@@ -2,6 +2,7 @@ function vibwav = getGaborVib(videoID, frms)
 %GETGABORVIB get vibration wave by Gabor Transformation
 %   vibwav = getGaborVib(videoID, frms)
     
+    nfrms = length(frms);
     img = frmread(videoID, frms(1));
     [~, imf] = gabor_a(img, 0.5, 3, pi/4, 0);
     phi0 = angle(imf);
@@ -16,8 +17,6 @@ function vibwav = getGaborVib(videoID, frms)
         Phase(k) = sum(pha(:));
     end
     
-    Phase = detrend(Phase);
-    vibwav = zeros(960, 1);
-    vibwav(1:nfrms) = Phase;
+    vibwav = detrend(Phase);
 end
 

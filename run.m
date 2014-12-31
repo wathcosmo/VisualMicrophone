@@ -34,9 +34,15 @@ addpath('./textureSynth/matlabPyrTools/MEX');
 
 tic;
 
-vibwav = getGaborVib(1, 9441:16160);
-freq = abs(fft(vibwav));
-imshow(freq);
+% vibwav = zeros(960, 1);
+% vibwav(1:600) = getGaborVib(1, 1:600);
+% freq = abs(fft(vibwav));
+% plot(freq);
+
+gaborwav1 = getGaborVib(1, 1:18134);
+gaborwav2 = getGaborVib(2, 1:18134);
+save gaborwav gaborwav1 gaborwav2
+
     
 toc;
 
