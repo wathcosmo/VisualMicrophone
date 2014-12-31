@@ -1,21 +1,20 @@
 %% addpath
-% mexopencv
+% mexopencv=
 % addpath('./mexopencv-master');
 % mmread
 % addpath('./mmread');
-% video = mmread('01.MTS', 1, [], false, true);
+% video = mmread('01.MTS', 8000, [], false, true);
 % img = video.frames(1).cdata;
+% imwrite(img, '8000.jpg');
 % % textureSynth
-% addpath('./textureSynth/matlabPyrTools/');
-% addpath('./textureSynth/textureSynth/');
-% addpath('./textureSynth/colorTextureSynth/');
-% addpath('./textureSynth/matlabPyrTools/MEX');
+addpath('./textureSynth/matlabPyrTools/');
+addpath('./textureSynth/matlabPyrTools/MEX');
 
 %%
 %distractPics('02.MTS', '02', 1:18314);
 
 %% video01
-% time mapping
+% time map
 
 % syn 200Hz
 % about 1 sec = 1 : 780
@@ -35,18 +34,15 @@
 
 tic;
 
-vibwav = getVib(1, 7521 : 8480);
-plot(vibwav)
-
+vibwav = getGaborVib(1, 9441:16160);
 freq = abs(fft(vibwav));
-figure
-plot(freq)
-
+imshow(freq);
+    
 toc;
 
 
 %% video02
-% time mapping
+% time map
 
 % syn 200Hz = 1 : 660
 
@@ -65,7 +61,7 @@ toc;
 
 % tic
 
-% vibwav = getVib(2, 1:18000);
+% vibwav = getMatchVib(2, 1:18000);
 % figure;
 % plot(vibwav);
 % 

@@ -3,6 +3,7 @@
 *.MTS
 *.wav
 *.mat
+*.jpg
 distractPics.m
 mexopencv-master
 mmread
