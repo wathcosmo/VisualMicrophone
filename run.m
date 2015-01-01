@@ -32,18 +32,38 @@ addpath('./textureSynth/matlabPyrTools/MEX');
 % music
 % 11~17 sec = 9441 : 16160
 
+% ------------------------------------------------------
 tic;
+VideoID = 1;
 
 % vibwav = zeros(960, 1);
-% vibwav(1:600) = getGaborVib(1, 1:600);
+% vibwav(1:600) = getGaborVib(VideoID, 1:600);
+
+vibwav = getGaborVib(VideoID, 5561 : 6520);
+vibwav = mapminmax(vibwav', -1, 1);
+vibwav = vibwav - mean(vibwav);
+freq = abs(fft(vibwav));
+freq(1:50) = 0;
+freq(452:end) = 0;
+figure
+plot(freq);
+
+% Frms = {1:780, 781:1740, 1741:2700, 2701:3660, 3661:4620, ...
+%     4621:5560, 5561:6560, 6561:7520, 7521:8480, 8481:9440, 9441:18134};
+% n = length(Frms);
+% 
+% vibwav = getGaborVib(VideoID, Frms{3});
 % freq = abs(fft(vibwav));
-% plot(freq);
+% plot(freq)
+% 
+% gaborwav1 = zeros(1, 18134);
+% for i = 1 : n
+%     gaborwav1(Frms{i}) = getGaborVib(1, Frms{i});
+% end
+% gaborwav1 = mapminmax(gaborwav1', -1, 1);
+% gaborwav1 = gaborwav1 - mean(gaborwav1);
+% save gaborwav1 gaborwav1
 
-gaborwav1 = getGaborVib(1, 1:18134);
-gaborwav2 = getGaborVib(2, 1:18134);
-save gaborwav gaborwav1 gaborwav2
-
-    
 toc;
 
 
@@ -63,11 +83,25 @@ toc;
 % 9 sec = 7381 : 8340
 
 % music
-% 11~17 sec = 9280 : 16000
+% 11~17 sec = 9281 : 16000
 
+% ----------------------------------------------------------
 % tic
+% VideoID = 2;
 
-% vibwav = getMatchVib(2, 1:18000);
+% Frms = {1:660, 661:1620, 1621:2580, 2581:3540, 3541:4500, 4501:5460, ...
+%     5461:6420, 6421:7380, 7381:8340, 8341:9280, 9281:18134};
+% n = length(Frms);
+% 
+% gaborwav2 = zeros(1, 18134);
+% for i = 1 : n
+%     gaborwav2(Frms{i}) = getGaborVib(VideoID, Frms{i});
+% end
+% gaborwav2 = mapminmax(gaborwav2', -1, 1);
+% gaborwav2 = gaborwav2 - mean(gaborwav2);
+% save gaborwav2 gaborwav2
+
+% vibwav = getMatchVib(VideoID, 1:18000);
 % figure;
 % plot(vibwav);
 % 
