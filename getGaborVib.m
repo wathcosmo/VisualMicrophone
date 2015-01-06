@@ -24,7 +24,6 @@ function vibwav = getGaborVib(videoID, frms)
         Phase(k) = sum(pha(:));
     end
     
-    Phase(1) = mean(Phase(2:nfrms));
     vibwav = detrend(Phase);
 end
 

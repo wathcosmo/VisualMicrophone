@@ -36,8 +36,8 @@ function vibwav = getMatchVib(videoID, frms)
     
     X(:,1) = detrend(X(:,1));
     X(:,2) = detrend(X(:,2));
-    [~, ~, v] = svd(X);
-    %[v, ~] = eigs(X'*X, 1);
+%     [~, ~, v] = svd(X);
+    [v, ~] = eigs(X'*X, 1);
     vibwav = zeros(960, 1);
     vibwav(1:n) = X * v;
 end
